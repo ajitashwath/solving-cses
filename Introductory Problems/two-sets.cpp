@@ -7,26 +7,25 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    ll total = n * (n + 1) / 2;
+    ll total = 1LL * n * (n + 1);
     if(total % 2 != 0) {
-        cout << "NO" << endl;
+        cout << "NO\n";
         return 0;
     }
-    cout << "YES" << endl;
+
+    cout << "YES\n";
     vector<ll> set1, set2;
     ll target = total / 2;
     for(ll i = n; i >= 1; i--) {
         if(target - i >= 0) {
             set1.push_back(i);
             target -= i;
-        } else {
-            set2.push_back(i);
-        }
+        } else set2.push_back(i);
     }
     cout << set1.size() << endl;
-    for(auto x : set1) cout << x << " ";
-    cout << "\n" << set2.size() << endl;
-    for(auto x : set2) cout << x << " ";
+    for(auto x : set1) cout << x << ' ';
+    cout << endl << set2.size() << endl;
+    for(auto x : set2) cout << x << ' ';
     cout << endl;
     return 0;
 }
