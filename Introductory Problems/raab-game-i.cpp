@@ -1,45 +1,36 @@
+// Each player has permutation of 1..n
+// If A[i] > B[i], Player A gets point
+// If A[i] < B[i], Player B gets point
+// Equal, No points
+
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
     int t;
     cin >> t;
-    while (t--) {
+    while(t--) {
         int n, a, b;
         cin >> n >> a >> b;
-
-        if(a + b > n) {
-            cout << "NO\n";
+        if(a == 0 && b == 0) {
+            cout << "YES" << endl;
+            for(int i = 1; i <= n; i++) cout << i << " ";
+            cout << endl;
+            for(int i = 1; i <= n; i++) cout << i << " ";
+            cout << endl;
             continue;
         }
-
-        vector<int> p1, p2;
-        int ties = n - a - b;
-
-        for(int i = 1; i <= ties; i++) {
-            p1.push_back(i);
-            p2.push_back(i);
+        if(a == 0 || b == 0 || a + b > n) {
+            cout << "NO" << endl;
+            continue;
         }
-
-        vector<int> rem;
-        for(int i = ties + 1; i <= n; i++) rem.push_back(i);
-        int m = rem.size();
-
-        for (int i = 0; i < a; i++) {
-            p1.push_back(rem[m - 1 - i]);
-            p2.push_back(rem[i]);
-        }
-
-        for(int i = 0; i < b; i++) {
-            p1.push_back(rem[a + i]);
-            p2.push_back(rem[m - 1 - a - i]);
-        }
-
-        cout << "YES\n";
-        for(int x : p1) cout << x << " ";
-        cout << "\n";
-        for(int x : p2) cout << x << " ";
-        cout << "\n";
+        cout << "YES" << endl;
+        for(int i = 1; i <= n; i++) cout << i << " ";
+        cout << endl;
+        int offset = n - a - b;
+        for(int i = 1; i <= offset; i++) cout << i << " ";
+        for(int i = offset + a + 1; i <= n; i++) cout << i << " ";
+        for(int i = offset + 1; i <= offset + a; i++) cout << i << " ";
+        cout << endl;
     }
-    return 0;
 }
